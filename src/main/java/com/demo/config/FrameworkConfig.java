@@ -1,8 +1,13 @@
 package com.demo.config;
 
 import com.demo.config.converters.StringToBrowserTypeConverter;
+import com.demo.config.converters.StringToURLConverter;
+import com.demo.enums.BrowserRemoteModeType;
 import com.demo.enums.BrowserType;
+import com.demo.enums.RunModeBrowserType;
 import org.aeonbits.owner.Config;
+
+import java.net.URL;
 
 /**
  * Order of precedence for configuration properties:
@@ -21,4 +26,16 @@ public interface FrameworkConfig extends Config {
     @DefaultValue("CHROME")
     @ConverterClass(StringToBrowserTypeConverter.class)
     BrowserType browser();
+
+    @Key("runModeBrowser")
+    RunModeBrowserType browserRunMode();
+
+    @Key("browserRemoteMode")
+    BrowserRemoteModeType browserRemoteMode();
+
+    @ConverterClass(StringToURLConverter.class)
+    URL seleniumGridURL();// since keyname is same as string name no need to mention it
+
+    @ConverterClass(StringToURLConverter.class)
+    URL selenoidGridUrl(); // since keyname is same as string name no need to mention it
 }
