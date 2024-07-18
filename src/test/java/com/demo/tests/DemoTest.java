@@ -1,13 +1,12 @@
 package com.demo.tests;
 
-import com.demo.driver.web.local.LocalDriverFactory;
-import com.demo.enums.BrowserType;
+import com.demo.config.factory.BrowserStackConfigFactory;
 import org.testng.annotations.Test;
 
 public class DemoTest {
 
     @Test
     public void testLogin() {
-        LocalDriverFactory.getDriver(BrowserType.CHROME);
+        System.out.println(BrowserStackConfigFactory.getConfig().browserStackUrl());
     }
 }

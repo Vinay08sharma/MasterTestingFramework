@@ -1,6 +1,8 @@
 package com.demo.config;
 
 import com.demo.config.converters.StringToBrowserTypeConverter;
+import com.demo.config.converters.StringToRemoteModeBrowserType;
+import com.demo.config.converters.StringToRunModeBrowserType;
 import com.demo.config.converters.StringToURLConverter;
 import com.demo.enums.BrowserRemoteModeType;
 import com.demo.enums.BrowserType;
@@ -28,14 +30,28 @@ public interface FrameworkConfig extends Config {
     BrowserType browser();
 
     @Key("runModeBrowser")
+    @ConverterClass(StringToRunModeBrowserType.class)
     RunModeBrowserType browserRunMode();
 
     @Key("browserRemoteMode")
+    @ConverterClass(StringToRemoteModeBrowserType.class)
     BrowserRemoteModeType browserRemoteMode();
+
+    @Key("runModeMobileRemote")
+    @ConverterClass(StringToRunModeBrowserType.class)
+    RunModeBrowserType mobileRunMode();
+
+    @Key("mobileRemoteMode")
+//    @ConverterClass("")
+    BrowserRemoteModeType mobileRemoteMode();
 
     @ConverterClass(StringToURLConverter.class)
     URL seleniumGridURL();// since keyname is same as string name no need to mention it
 
     @ConverterClass(StringToURLConverter.class)
     URL selenoidGridUrl(); // since keyname is same as string name no need to mention it
+
+    @DefaultValue("http://127.0.0.1:4723/wd/hub")
+    @ConverterClass(StringToURLConverter.class)
+    URL localAppiumServerUrl();
 }

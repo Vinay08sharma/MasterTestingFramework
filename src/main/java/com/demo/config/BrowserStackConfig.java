@@ -21,7 +21,7 @@ public interface BrowserStackConfig extends Config {
 
     String key();
 
-    @DefaultValue("BS link")
+    @DefaultValue("https://${username}:${key}@hub-cloud.browserstack.com/wd/hub")
     @ConverterClass(StringToURLConverter.class)
     URL browserStackUrl();
 }
